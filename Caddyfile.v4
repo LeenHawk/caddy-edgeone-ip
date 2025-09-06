@@ -1,0 +1,17 @@
+{
+    admin off
+    debug
+    servers :8081 {
+        trusted_proxies edgeone {
+            version v4
+            area global
+            timeout 10s
+        }
+    }
+}
+
+:8081 {
+    respond /health 200 {
+        body OK
+    }
+}
