@@ -6,6 +6,20 @@
 
 默认从官方接口 `https://api.edgeone.ai/ips` 拉取。你可以用 `version`（v4/v6）和 `area`（global/mainland-china/overseas）做筛选，或用自定义 `urls` 覆盖。
 
+## 为什么选择本模块
+
+- 开箱即用：默认直连 EdgeOne 官方接口，无需额外配置。
+- 精准筛选：按 `version`（IPv4/IPv6）与 `area`（global/mainland-china/overseas）。
+- 持续更新：后台定时刷新，支持请求超时控制。
+- 生产可用的稳健性：
+  - HTTP 状态检查与超时控制
+  - 指数退避 + 抖动，支持 `Retry-After`
+  - 条件请求（ETag / Last-Modified → 304），避免重复下载
+  - 磁盘持久化（默认写入 Caddy 应用数据目录）+ TTL（默认 7 天），重启即热启动
+- 安全可靠：并发读写安全；失败时保留上次成功快照。
+- 日志友好：计数类为 debug，异常为 error，生产环境更干净。
+- 验证充分：自动化用例覆盖文本/JSON 解析、条件请求 304、退避重试、持久化 + TTL；并有真实接口与 Caddy 集成实测。
+
 ## Caddyfile 示例
 
 将如下配置放到全局 options 的对应 `servers` 下。

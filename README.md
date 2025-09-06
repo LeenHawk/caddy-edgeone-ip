@@ -6,6 +6,20 @@ This Caddy v2 module provides `http.ip_sources.edgeone`, an IP range source that
 
 By default, it fetches from the official endpoint `https://api.edgeone.ai/ips`. You can optionally filter by `version` (v4/v6) and `area` (global/mainland-china/overseas), or override with custom `urls`.
 
+## Why This Module
+
+- Zero‑config default: Talks to the official EdgeOne endpoint out of the box.
+- Precise filtering: `version` (IPv4/IPv6) and `area` (global/mainland‑china/overseas).
+- Always fresh: Background refresh with timeout + periodic schedule.
+- Production hardening:
+  - HTTP status checks, request timeouts
+  - Exponential backoff + jitter with `Retry-After` support
+  - Conditional requests (ETag / Last‑Modified → 304) to avoid unnecessary downloads
+  - On‑disk persistence with sane defaults (Caddy app data dir) and TTL (7 days) for instant warm starts
+- Safe by design: Concurrency‑safe reads; previous good snapshot retained on transient failures.
+- Clean logs: Debug for counters, Error for failures.
+- Verified: Automated tests cover text/JSON parsing, conditional 304s, retry/backoff, persistence + TTL; manual runs confirm real endpoint responses and module integration.
+
 ## Example Caddyfile
 
 Put the following in global options under the corresponding server options:
