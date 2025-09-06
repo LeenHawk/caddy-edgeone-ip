@@ -67,7 +67,7 @@
 ## 使用 xcaddy 构建
 
 ```
-xcaddy build --with github.com/WeidiDeng/caddy-edgeone-ip
+xcaddy build --with github.com/LeenHawk/caddy-edgeone-ip
 ```
 
 然后按上面的示例配置你的 Caddyfile。

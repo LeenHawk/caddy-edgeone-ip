@@ -67,7 +67,7 @@ Examples:
 ## Build with xcaddy
 
 ```
-xcaddy build --with github.com/WeidiDeng/caddy-edgeone-ip
+xcaddy build --with github.com/LeenHawk/caddy-edgeone-ip
 ```
 
 Then configure your Caddyfile as shown above.
