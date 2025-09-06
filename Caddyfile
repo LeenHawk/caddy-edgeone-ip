@@ -6,6 +6,12 @@
             version v6
             area overseas
             timeout 10s
+            max_retries 2
+            backoff_initial 500ms
+            backoff_max 3s
+            jitter 0.1
+            respect_retry_after true
+            # persist_path /tmp/edgeone-ip-cache.json  # optional override
         }
     }
 }
